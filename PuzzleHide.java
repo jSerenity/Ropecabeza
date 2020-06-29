@@ -1,10 +1,10 @@
-public class Spy {
+public class PuzzleHide {
     private int spyIndexX;
     private int spyIndexY;
-    Spy()
+    PuzzleHide()
     {
-        spyIndexX=0;
-        spyIndexY=0;
+        spyIndexX=3;
+        spyIndexY=3;
     }
 
     public void SetX(int x){
