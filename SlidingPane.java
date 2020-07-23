@@ -40,8 +40,10 @@ public class SlidingPane {
     } 
         public class SlidePane extends JPanel { 
             private long startTime = -1; 
-            private int runTime = 1000; private int startX; 
-            private int targetX; private boolean slideIn = false; 
+            private int runTime = 1000; 
+            private int startX; 
+            private int targetX; 
+            private boolean slideIn = false; 
             private Timer slideTimer; 
             public SlidePane() { 
                 setBackground(Color.DARK_GRAY); 
@@ -52,22 +54,25 @@ public class SlidingPane {
                 label.setForeground(Color.WHITE); 
                 add(label); 
 
-                slideTimer = new Timer(40, new ActionListener() { 
+                slideTimer = new Timer(10, new ActionListener() { 
                     @Override 
                     public void actionPerformed(ActionEvent e) { 
-                    long diff = System.currentTimeMillis() - startTime; 
-                    double progress = (double)diff / (double)runTime; if (progress >= 1d) 
-                    {   progress = 1d; 
-                        slideTimer.stop(); 
-                        startTime = -1; 
-                    }
-                     Container parent = getParent(); 
-                     int height = parent.getHeight(); 
-                     setSize(getPreferredSize().width, height); 
-                     int x = calculateProgress(startX, targetX, progress); 
-                     setLocation(x, 0);
-                     revalidate(); 
-                     repaint(); } 
+                        long diff = System.currentTimeMillis() - startTime; 
+                        double progress = (double)diff / (double)runTime; 
+                        if (progress >= 1d) 
+                        {     System.out.println("xBk: "+progress);
+                            progress = 1d; 
+                            slideTimer.stop(); 
+                            startTime = -1; 
+                        }
+                        Container parent = getParent(); 
+                        int height = parent.getHeight(); 
+                        setSize(getPreferredSize().width, height); 
+                        int x = calculateProgress(startX, targetX, progress); 
+                        setLocation(x, 0);
+                        revalidate(); 
+                        repaint(); 
+                        } 
                     }); 
                     }
                       protected int calculateProgress(int startValue, int endValue, double fraction) 
